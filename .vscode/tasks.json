@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build SDL2 App",
+      "type": "shell",
+      "command": "clang++",
+      "args": [
+        "-std=c++17",
+        "src/main.cpp",
+        "src/Button.cpp",
+        "-o",
+        "build/app",
+        "-I${workspaceFolder}/include",
+        "-I/opt/homebrew/include/SDL2", // ✅ Unified include path
+        "-D_THREAD_SAFE",
+        "-L/opt/homebrew/lib", // ✅ Unified lib path
+        "-lSDL2",
+        "-lSDL2_ttf"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
