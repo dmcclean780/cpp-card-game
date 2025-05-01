@@ -1,24 +1,25 @@
-#ifndef BUTTON_H
-#define BUTTON_H
+#ifndef TEXT_BOX_H
+#define TEXT_BOX_H
+
+
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <string>
+
 #include "Settings.hpp"
 
-class Button {
+class TextBox {
     public:
-        Button(int y, const std::string& text, TTF_Font* font, SDL_Color color, SDL_Renderer* renderer);
-        ~Button();
+        TextBox(int y, const std::string& text, TTF_Font* font, SDL_Color color, SDL_Renderer* renderer);
+        ~TextBox();
     
         void render(SDL_Renderer* renderer, Settings* settings);
-        bool isClicked(int mouseX, int mouseY);
     
     private:
         SDL_Rect rect;
-        SDL_Rect bgRect;
         SDL_Texture* texture;
         std::string label;
-        int offset;
+        int y;
         SDL_Color color;
         TTF_Font* font;
     };

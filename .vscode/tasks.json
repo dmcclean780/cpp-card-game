@@ -8,7 +8,17 @@
       "args": [
         "-std=c++17",
         "src/main.cpp",
-        "src/Button.cpp",
+        "src/ui/Button.cpp",
+        "src/ui/TextBox.cpp",
+        "src/utils/Fonts.cpp",
+        "src/screens/LoadingScreen.cpp",
+        "src/screens/StartingScreen.cpp",
+        "src/screens/SettingsScreen.cpp",
+        "src/screens/GameScreen.cpp",
+        "src/game-components/Card.cpp",
+        "src/game-components/Deck.cpp",
+        "src/game-components/Player.cpp",
+        "src/game-components/DiscardPile.cpp",
         "-o",
         "build/app",
         "-I${workspaceFolder}/include",
@@ -16,7 +26,9 @@
         "-D_THREAD_SAFE",
         "-L/opt/homebrew/lib", // ✅ Unified lib path
         "-lSDL2",
-        "-lSDL2_ttf"
+        "-lSDL2_ttf",
+        "-lSDL2_image",
+        "-g"
       ],
       "group": {
         "kind": "build",
