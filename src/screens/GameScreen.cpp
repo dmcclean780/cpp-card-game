@@ -6,9 +6,13 @@
 
 #include "cpp-card-game/Colors.hpp"
 #include "cpp-card-game/game-components/Card.hpp"
+#include "cpp-card-game/Fonts.hpp"
 
 GameScreen::GameScreen(SDL_Renderer *renderer, ScreenManager *manager, Settings *settings)
     : manager(manager) {
+
+  turnCounter = std::make_unique<TurnCounter>(Fonts::Medium, Colors::WHITE, renderer);
+
   deck = Deck(renderer);
   std::cout << "Deck created" << std::endl;
   deck.shuffleDeck();
@@ -27,10 +31,9 @@ void GameScreen::handleEvent(SDL_Event &event, SDL_Renderer *renderer, Settings 
   if (event.type == SDL_MOUSEBUTTONDOWN) {
     int mouseX, mouseY;
     SDL_GetMouseState(&mouseX, &mouseY);
-    if (turnsTaken == 0) {
+    if (turnCounter->getTurnCounter() == 0) {
       player.showClickedCards(mouseX, mouseY);
-    }
-    else if( turnsTaken == 1) {
+    } else if( turnCounter->getTurnCounter() == 1) {
       player.hideClickedCards(mouseX, mouseY);
     }
   }
@@ -38,11 +41,10 @@ void GameScreen::handleEvent(SDL_Event &event, SDL_Renderer *renderer, Settings 
 
 void GameScreen::update(SDL_Renderer *renderer, Settings *settings) {
   player.updateCardRect(settings);
-  if (turnsTaken == 0 && player.getVisableCards() == 2) {
-    turnsTaken++;
-  }
-  else if (turnsTaken == 1 && player.getVisableCards() == 0) {
-    turnsTaken++;
+  if (turnCounter->getTurnCounter() == 0 && player.getVisableCards() == 2) {
+    turnCounter->incrementTurnCounter(renderer);
+  } else if (turnCounter->getTurnCounter() == 1 && player.getVisableCards() == 0) {
+    turnCounter->incrementTurnCounter(renderer);
   }
 }
 
@@ -53,6 +55,7 @@ void GameScreen::render(SDL_Renderer *renderer, Settings *settings) {
   player.renderHand(renderer);
   deck.render(renderer, settings);
   discardPile.render(renderer, settings);
+  turnCounter->render(renderer, settings);
 }
 
 void GameScreen::onEnter(SDL_Window *window, Settings *settings) {

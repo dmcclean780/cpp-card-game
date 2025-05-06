@@ -6,7 +6,7 @@
 #include <SDL_ttf.h>
 #include <string>
 
-#include "Settings.hpp"
+#include "../Settings.hpp"
 
 class TextBox {
     public:
@@ -22,6 +22,7 @@ class TextBox {
         int y;
         SDL_Color color;
         TTF_Font* font;
+
     };
 
 #endif

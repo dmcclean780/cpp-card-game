@@ -9,6 +9,7 @@
 #include "cpp-card-game/game-components/Deck.hpp"
 #include "cpp-card-game/game-components/Player.hpp"
 #include "cpp-card-game/game-components/DiscardPile.hpp"
+#include "cpp-card-game/game-components/TurnCounter.hpp"
 
 
 class GameScreen : public Screen {
@@ -24,7 +25,7 @@ class GameScreen : public Screen {
     Deck deck;
     Player player;
     DiscardPile discardPile;
-    int turnsTaken = 0;
+    std::unique_ptr<TurnCounter> turnCounter;
 };
 
 #endif

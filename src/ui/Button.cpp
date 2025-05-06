@@ -1,4 +1,4 @@
-#include "cpp-card-game/Button.hpp"
+#include "cpp-card-game/ui/Button.hpp"
 #include <iostream>
 
 Button::Button(int offset, const std::string& text, TTF_Font* font, SDL_Color color, SDL_Renderer* renderer)

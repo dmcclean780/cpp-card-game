@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include "cpp-card-game/Button.hpp"
+#include "cpp-card-game/ui/Button.hpp"
 #include "cpp-card-game/Colors.hpp"
 #include "cpp-card-game/Fonts.hpp"
 #include "cpp-card-game/ScreenManager.hpp"

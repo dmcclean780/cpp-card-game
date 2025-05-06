@@ -3,10 +3,10 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 
-#include "../Button.hpp"
+#include "../ui/Button.hpp"
 #include "Screen.hpp"
 #include "../ScreenManager.hpp"
-#include "../TextBox.hpp"
+#include "../ui/TextBox.hpp"
 #include "../Settings.hpp"
 
 

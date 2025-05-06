@@ -1,4 +1,4 @@
-#include "cpp-card-game/TextBox.hpp"
+#include "cpp-card-game/ui/TextBox.hpp"
 #include <iostream>
 
 TextBox::TextBox(int y, const std::string& text, TTF_Font* font, SDL_Color color, SDL_Renderer* renderer)

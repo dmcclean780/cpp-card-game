@@ -19,6 +19,7 @@
         "src/game-components/Deck.cpp",
         "src/game-components/Player.cpp",
         "src/game-components/DiscardPile.cpp",
+        "src/game-components/TurnCounter.cpp",
         "-o",
         "build/app",
         "-I${workspaceFolder}/include",
