@@ -11,7 +11,7 @@
 GameScreen::GameScreen(SDL_Renderer *renderer, ScreenManager *manager, Settings *settings)
     : manager(manager) {
 
-  turnCounter = std::make_unique<TurnCounter>(Fonts::Medium, Colors::WHITE, renderer);
+  turnCounter = std::make_unique<TurnCounter>(Fonts::Large, Colors::WHITE, renderer);
 
   deck = Deck(renderer);
   std::cout << "Deck created" << std::endl;
@@ -23,6 +23,8 @@ GameScreen::GameScreen(SDL_Renderer *renderer, ScreenManager *manager, Settings 
   player.addCardToHand(deck.drawCard());
   player.addCardToHand(deck.drawCard());
 
+
+  player.printHand();
   discardPile = DiscardPile(renderer);
 }
 

@@ -15,10 +15,11 @@ class Card {
         SDL_Rect dstRect;
         void loadFaceTexture(SDL_Renderer* renderer);
         void loadBackTexture(SDL_Renderer* renderer);
-        void calculateCardDimensions(Settings* settings, int& cardWidthScaled, int&cardHeightScaled) const;
+        
         
 
     public:
+    void calculateCardDimensions(Settings* settings, int& cardWidthScaled, int&cardHeightScaled) const;
         int getSuit() const;
         int getRank() const;
         std::string getSuitString() const;

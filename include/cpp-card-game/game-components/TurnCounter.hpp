@@ -19,24 +19,27 @@ class TurnCounter {
         }
         void incrementTurnCounter(SDL_Renderer* renderer) { 
             turnCounter++; 
-            updateTexture(renderer);
+            updateCounterTexture(renderer);
         }
         void decrementTurnCounter(SDL_Renderer* renderer) { 
             turnCounter--; 
-            updateTexture(renderer);
+            updateCounterTexture(renderer);
         }
         void resetTurnCounter(SDL_Renderer* renderer) { 
             turnCounter = 0; 
-            updateTexture(renderer); 
+            updateCounterTexture(renderer); 
         }
     
     private:
 
-        void updateTexture(SDL_Renderer* renderer);
+        void updateCounterTexture(SDL_Renderer* renderer);
+        void createLabelTexture(SDL_Renderer* renderer);
+        void renderLabel(SDL_Renderer* renderer, Settings* settings);
+        void renderCounter(SDL_Renderer* renderer, Settings* settings);
+        void renderBackground(SDL_Renderer* renderer, Settings* settings);
 
-
-        SDL_Rect rect;
-        SDL_Texture* texture;
+        SDL_Texture* turnCountTexture;
+        SDL_Texture* labelTexture;
         int turnCounter;
         SDL_Color color;
         TTF_Font* font;
