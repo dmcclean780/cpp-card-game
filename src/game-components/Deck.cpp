@@ -44,15 +44,15 @@ Card Deck::drawCard() {
 }
 
 void Deck::render(SDL_Renderer *renderer, Settings *settings) const {
-    int cardWidthScaled;
-    int cardHeightScaled;
+    int deckWidthScaled;
+    int deckHeightScaled;
 
-    int deckYCoord = settings->screenHeight / 3;
-    int deckXCoord = settings->screenWidth / 3;
+    int deckYCoord = getDeckYCoord(settings);
+    int deckXCoord = getDeckXCoord(settings);
 
     if (backTexture) {
-        calculateCardDimensions(settings, cardWidthScaled, cardHeightScaled);
-        SDL_Rect dstRect = {deckXCoord, deckYCoord, cardWidthScaled, cardHeightScaled};
+        calculateDeckDimensions(settings, deckWidthScaled, deckHeightScaled);
+        SDL_Rect dstRect = {deckXCoord, deckYCoord, deckWidthScaled, deckHeightScaled};
         
         if(isEmpty()){
             SDL_SetRenderDrawColor(renderer, Colors::DARK_GRAY.r, Colors::DARK_GRAY.g, Colors::DARK_GRAY.b, Colors::DARK_GRAY.a);
@@ -81,23 +81,23 @@ void Deck::loadBackTexture(SDL_Renderer *renderer) {
     SDL_FreeSurface(loadedSurface);
 }
 
-void Deck::calculateCardDimensions(Settings* settings, int& cardWidthScaled, int&cardHeightScaled) const {
-    int cardHeightMaximum = settings->screenHeight / 3; // Set the height of the card
-    int cardWidthMaximum = settings->screenWidth / 4;   // Set the width of the card
-    int cardWidthOriginal;
-    int cardHeightOriginal;
-    int cardWidthScalingFactor;
-    int cardHeightScalingFactor;
+void Deck::calculateDeckDimensions(Settings* settings, int& deckWidthScaled, int&deckHeightScaled) const {
+    int deckHeightMaximum = getDeckHeight(settings); // Set the height of the card
+    int deckWidthMaximum = getDeckWidth(settings);   // Set the width of the card
+    int deckWidthOriginal;
+    int deckHeightOriginal;
+    int deckWidthScalingFactor;
+    int deckHeightScalingFactor;
 
-    SDL_QueryTexture(backTexture.get(), NULL, NULL, &cardWidthOriginal, &cardHeightOriginal);
+    SDL_QueryTexture(backTexture.get(), NULL, NULL, &deckWidthOriginal, &deckHeightOriginal);
 
-    cardWidthScalingFactor = cardWidthMaximum / cardWidthOriginal;
-    cardHeightScalingFactor = cardHeightMaximum / cardHeightOriginal;
-    if (cardWidthScalingFactor < cardHeightScalingFactor) {
-        cardWidthScaled = cardWidthOriginal * cardWidthScalingFactor;
-        cardHeightScaled = cardHeightOriginal * cardWidthScalingFactor;
+    deckWidthScalingFactor = deckWidthMaximum / deckWidthOriginal;
+    deckHeightScalingFactor = deckHeightMaximum / deckHeightOriginal;
+    if (deckWidthScalingFactor < deckHeightScalingFactor) {
+        deckWidthScaled = deckWidthOriginal * deckWidthScalingFactor;
+        deckHeightScaled = deckHeightOriginal * deckWidthScalingFactor;
     } else {
-        cardHeightScaled = cardHeightOriginal * cardHeightScalingFactor;
-        cardWidthScaled = cardWidthOriginal * cardHeightScalingFactor;
+        deckHeightScaled = deckHeightOriginal * deckHeightScalingFactor;
+        deckWidthScaled = deckWidthOriginal * deckHeightScalingFactor;
     }
 }

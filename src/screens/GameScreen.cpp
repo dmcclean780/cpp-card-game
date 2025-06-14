@@ -12,8 +12,10 @@ GameScreen::GameScreen(SDL_Renderer *renderer, ScreenManager *manager, Settings 
     : manager(manager) {
 
   turnCounter = std::make_unique<TurnCounter>(Fonts::Large, Colors::WHITE, renderer);
-
   deck = Deck(renderer);
+  discardPile = DiscardPile(renderer);
+
+  
   std::cout << "Deck created" << std::endl;
   deck.shuffleDeck();
   std::cout << "Deck shuffled" << std::endl;
@@ -24,8 +26,7 @@ GameScreen::GameScreen(SDL_Renderer *renderer, ScreenManager *manager, Settings 
   player.addCardToHand(deck.drawCard());
 
 
-  player.printHand();
-  discardPile = DiscardPile(renderer);
+  
 }
 
 void GameScreen::handleEvent(SDL_Event &event, SDL_Renderer *renderer, Settings *settings) {
@@ -42,7 +43,7 @@ void GameScreen::handleEvent(SDL_Event &event, SDL_Renderer *renderer, Settings 
 }
 
 void GameScreen::update(SDL_Renderer *renderer, Settings *settings) {
-  player.updateCardRect(settings);
+  player.update(settings);
   if (turnCounter->getTurnCounter() == 0 && player.getVisableCards() == 2) {
     turnCounter->incrementTurnCounter(renderer);
   } else if (turnCounter->getTurnCounter() == 1 && player.getVisableCards() == 0) {

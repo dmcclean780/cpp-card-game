@@ -145,8 +145,8 @@ void Card::renderBack(SDL_Renderer *renderer) const {
 }
 
 void Card::calculateCardDimensions(Settings* settings, int& cardWidthScaled, int& cardHeightScaled) const {
-    int cardHeightMaximum = settings->screenHeight / 3; // Set the height of the card
-    int cardWidthMaximum = settings->screenWidth / 8;   // Set the width of the card
+    int cardHeightMaximum = getCardHeight(settings); // Set the height of the card
+    int cardWidthMaximum = getCardWidth(settings);   // Set the width of the card
     int cardWidthOriginal;
     int cardHeightOriginal;
     int cardWidthScalingFactor;

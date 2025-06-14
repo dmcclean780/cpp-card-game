@@ -13,7 +13,20 @@ class Deck {
         int deckTop = 0; // Index of the top card in the deck
         std::shared_ptr<SDL_Texture> backTexture;
         void loadBackTexture(SDL_Renderer* renderer);
-        void calculateCardDimensions(Settings* settings, int& cardWidthScaled, int&cardHeightScaled) const;
+        void calculateDeckDimensions(Settings* settings, int& cardWidthScaled, int&cardHeightScaled) const;
+
+        int getDeckXCoord(Settings* settings) const {
+            return settings->screenWidth / 3;
+        }
+        int getDeckYCoord(Settings* settings) const {
+            return settings->screenHeight / 3;
+        }
+        int getDeckWidth(Settings* settings) const {
+            return settings->screenWidth / 4;
+        }
+        int getDeckHeight(Settings* settings) const {
+            return settings->screenHeight / 3;
+        }
 
     public:
         Deck(SDL_Renderer* renderer);

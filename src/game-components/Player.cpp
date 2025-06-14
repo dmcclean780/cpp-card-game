@@ -103,11 +103,11 @@ void Player::renderHandBackground(SDL_Renderer* renderer) const{
 
 void Player::updateHandBackgroundRect(Settings* settings) {
    
-    int xStart = settings->screenWidth / 16;
-    int yStart = settings->screenHeight / 3 * 2;
+    int xStart = getHandBackgroundXCoord(settings);
+    int yStart = getHandBackgroundYCoord(settings);
 
-    int width = settings->screenWidth / 2;
-    int height = settings->screenHeight / 3;
+    int width = getHandBackgroundWidth(settings);
+    int height = getHandBackgroundHeight(settings);
 
     handBackgroundRect = { xStart, yStart, width, height }; // Adjust the size and position as needed
 }
@@ -116,15 +116,13 @@ void Player::updateCardRect(Settings* settings) {
     int cardWidthScaled, cardHeightScaled;
     hand[0].calculateCardDimensions(settings, cardWidthScaled, cardHeightScaled);
 
-    int handYCoord = settings->screenHeight / 3 * 2 + 20;
-    int sidePadding = (settings->screenWidth / (hand.size()*2) - cardWidthScaled) / 2;
-    int handXStart = (sidePadding >= 0) ? settings->screenWidth / 16 + sidePadding : settings->screenWidth / 16;
-    int handXGap = cardWidthScaled + sidePadding*2;
+    int handYCoord = getHandYCoord(settings);
+    int sidePadding = getHandCardPadding(settings, cardWidthScaled);
+    int handXStart = getHandXCoord(settings, sidePadding);
+    int handXGap = getHandCardSpacing(cardWidthScaled, sidePadding);
     for (int i = 0; i < hand.size(); i++) {
         hand[i].updateCardRect(settings,  handXStart + (i * handXGap), handYCoord); // Update the card rectangle with the new dimensions
     }
-
-    updateHandBackgroundRect(settings); // Update the background rectangle
 }
 
 void Player::showClickedCards(int mouseX, int mouseY) {
